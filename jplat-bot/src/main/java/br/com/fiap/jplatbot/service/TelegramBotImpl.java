@@ -56,7 +56,7 @@ public class TelegramBotImpl {
                             "4- O que assistir? - Receba uma recomendação de filme!\n" +
                             "\n" +
                             "Caso deseje voltar ao inicio, digite \"voltar\""));
-                    
+
                     System.out.println("Mensagem Enviada? " + response.isOk());
                 }
             }
