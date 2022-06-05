@@ -31,13 +31,11 @@ public class TelegramBotImpl {
         int m = 0;
         bot.setUpdatesListener(updates -> {
             for (Update update : updates) {
-                if(!RegexValidator.isValidText(update.message().text()))
-                    return UpdatesListener.CONFIRMED_UPDATES_NONE;
                 if (update.message().text().compareToIgnoreCase("comandos") != 0) {
 
                     bot.execute(new SendMessage(update.message().chat().id(), "Ola, seja bem-vindo(a) ao JPLAT-BOT!"));
                     bot.execute(new SendMessage(update.message().chat().id(), "Como posso te ajudar? Digite \"comandos\" " +
-                            "para saber os meus serviços..."));
+                            "para saber como posso te ajudar..."));
 
                     System.out.println(RegexValidator.isValidText(update.message().text()));
 
@@ -51,7 +49,14 @@ public class TelegramBotImpl {
 
                 }
                 else {
-                    var response = bot.execute(new SendMessage(update.message().chat().id(), "vc selecionou comandos"));
+                    var response = bot.execute(new SendMessage(update.message().chat().id(), "Aqui estão as opções de comando:\n" +
+                            "1- Roll a Dice! - Teste sua sorte jogando o dado!\n" +
+                            "2- Wheater Report - Veja como está o clima agora em sua localização.\n" +
+                            "3- Pokedex - Consulte as Informações de um Pókemon!\n" +
+                            "4- O que assistir? - Receba uma recomendação de filme!\n" +
+                            "\n" +
+                            "Caso deseje voltar ao inicio, digite \"voltar\""));
+                    
                     System.out.println("Mensagem Enviada? " + response.isOk());
                 }
             }
