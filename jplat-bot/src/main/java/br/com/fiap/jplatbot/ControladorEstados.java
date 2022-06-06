@@ -22,7 +22,6 @@ public class ControladorEstados {
         COMANDOS,
         DICE,
         WEATHER,
-        POKEDEX,
         ERRO
     }
 
@@ -37,22 +36,22 @@ public class ControladorEstados {
             case COMANDOS:
                 novoEstado = controlaContextoComandos(estadoAtual, mensagem, id, bot);
                 estados.put(id, novoEstado);
-                estadoAtual = novoEstado;
                 break;
             case DICE:
                 novoEstado =controlaContextoDice(estadoAtual, mensagem,id, bot);
                 estados.put(id, novoEstado);
-                estadoAtual = novoEstado;
+                break;
+            case WEATHER:
+                novoEstado= controlaContextoDice(estadoAtual, mensagem, id, bot);
+                estados.put(id, novoEstado);
                 break;
             case ERRO:
                 novoEstado = controlaContextoErro(estadoAtual, mensagem, id, bot);
                 estados.put(id, novoEstado);
-                estadoAtual = novoEstado;
                 break;
             default:
                 novoEstado = controlaContextoInicial(estadoAtual, estados.size(), mensagem, id, bot);
                 estados.put(id, novoEstado);
-                estadoAtual = novoEstado;
                 break;
         }
     }
@@ -87,6 +86,9 @@ public class ControladorEstados {
             case "weather report":
                 telegramChatBotEstados.executaWeatherReport(bot, id);
                 return WEATHER;
+            case "voltar":
+                telegramChatBotEstados.defaultAction(bot, id);
+                return INICIAL;
             default:
                 telegramChatBotEstados.executaMostrarComandos(bot, id);
                 return COMANDOS;
@@ -100,7 +102,7 @@ public class ControladorEstados {
                 return COMANDOS;
             default:
                 telegramChatBotEstados.executaRollDice(bot, id);
-                return DICE;
+                return estado;
         }
     }
 }
