@@ -44,9 +44,9 @@ public class TelegramChatBotEstadosImpl implements ITelegramChatBotEstados {
 
     public void executaRollDice(TelegramBot bot, Long id) {
         RollADice rad = new RollADice();
-        bot.execute(new SendMessage(id, "Rolando o dado! Seu numero foi: \n" +
+        bot.execute(new SendMessage(id, "Para voltar para o menu anterior, digite \"voltar\" " +
                 "\n" +
-                "Para voltar para o menu anterior, digite \"voltar\" "));
+                "Rolando o dado! Seu numero foi:"));
         var response = bot.execute(new SendMessage(id, rad.getRandomNumber()));
         System.out.println("Mensagem Enviada? " + response.isOk());
     }
