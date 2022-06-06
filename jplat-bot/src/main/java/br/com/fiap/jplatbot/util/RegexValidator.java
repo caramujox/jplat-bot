@@ -5,7 +5,7 @@ import java.util.Locale;
 public class RegexValidator {
 
     public static boolean isValidText(String text) {
-        return text.matches("[A-Za-z]{2,}");
+        return text.matches("[A-Za-z[1-4]_ ]{1,}");
     }
 
     public static String checkValidText(String text) {
